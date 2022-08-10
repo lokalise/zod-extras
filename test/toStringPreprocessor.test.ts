@@ -1,7 +1,7 @@
 import toStringPreprocessor from '../src/toStringPreprocessor'
 import z from 'zod'
 
-describe('Coverting to string', () => {
+describe('toStringPreprocessor', () => {
     it('converts numbers to string', () => {
         const CREATE_USER_SCHEMA = z.object({
             age: z.preprocess(toStringPreprocessor, z.string().max(15)),
