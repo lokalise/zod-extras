@@ -26,14 +26,20 @@ describe('toNumberPreprocessor', () => {
     it('does not convert numbers input', () => {
         const SCHEMA = z.object({
             age: z.preprocess(toNumberPreprocessor, z.number()),
+            gold: z.preprocess(toNumberPreprocessor, z.number()),
+            level: z.preprocess(toNumberPreprocessor, z.number()),
         })
 
         const result = SCHEMA.parse({
             age: 44,
+            gold: 12.34,
+            level: 2e3,
         })
 
         expect(result).toEqual({
             age: 44,
+            gold: 12.34,
+            level: 2e3,
         })
     })
 
