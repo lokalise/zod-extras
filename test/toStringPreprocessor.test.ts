@@ -81,16 +81,16 @@ describe('toStringPreprocessor', () => {
         })
     })
 
-    it('failswhen parsing unsupported types', () => {
+    it('fails when parsing unsupported types', () => {
         const CREATE_USER_SCHEMA = z.object({
             name: z.preprocess(toStringPreprocessor, z.optional(z.string())),
         })
 
         expect(() =>
             CREATE_USER_SCHEMA.parse({
-                name: /test/,
+                name: () => {},
             }),
-        ).toThrowError(/Expected string, received object/)
+        ).toThrowError(/Expected string, received function/)
     })
 
     it('fails when parsing objects', () => {
