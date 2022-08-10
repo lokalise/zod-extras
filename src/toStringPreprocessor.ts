@@ -1,4 +1,4 @@
-const toStringPreprocessor = (value) => {
+const toStringPreprocessor = (value: unknown) => {
     switch (typeof value) {
         case 'bigint':
         case 'boolean':
