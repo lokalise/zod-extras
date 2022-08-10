@@ -1,5 +1,6 @@
-import toStringPreprocessor from '../src/toStringPreprocessor'
 import z from 'zod'
+
+import toStringPreprocessor from '../src/toStringPreprocessor'
 
 describe('toStringPreprocessor', () => {
     it('converts numbers to string', () => {
@@ -88,9 +89,9 @@ describe('toStringPreprocessor', () => {
 
         expect(() =>
             CREATE_USER_SCHEMA.parse({
-                name: () => {},
+                name: (x: string) => x,
             }),
-        ).toThrowError(/Expected string, received function/)
+        ).toThrow(/Expected string, received function/)
     })
 
     it('fails when parsing objects', () => {
@@ -102,7 +103,7 @@ describe('toStringPreprocessor', () => {
             CREATE_USER_SCHEMA.parse({
                 payload: { foo: 'bar' },
             }),
-        ).toThrowError(/Expected string, received object/)
+        ).toThrow(/Expected string, received object/)
     })
 
     it('fails when parsing null', () => {
@@ -114,6 +115,6 @@ describe('toStringPreprocessor', () => {
             CREATE_USER_SCHEMA.parse({
                 payload: null,
             }),
-        ).toThrowError(/Expected string, received null/)
+        ).toThrow(/Expected string, received null/)
     })
 })
