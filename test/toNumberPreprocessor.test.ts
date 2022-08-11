@@ -23,6 +23,37 @@ describe('toNumberPreprocessor', () => {
         })
     })
 
+    it('converts booleans to number', () => {
+        const SCHEMA = z.object({
+            isActive: z.preprocess(toNumberPreprocessor, z.number()),
+            isConfirmed: z.preprocess(toNumberPreprocessor, z.number()),
+        })
+
+        const result = SCHEMA.parse({
+            isActive: true,
+            isConfirmed: false,
+        })
+
+        expect(result).toEqual({
+            isActive: 1,
+            isConfirmed: 0,
+        })
+    })
+
+    it('converts null to zero', () => {
+        const SCHEMA = z.object({
+            createdAt: z.preprocess(toNumberPreprocessor, z.number()),
+        })
+
+        const result = SCHEMA.parse({
+            createdAt: null,
+        })
+
+        expect(result).toEqual({
+            createdAt: 0,
+        })
+    })
+
     it('does not convert numbers input', () => {
         const SCHEMA = z.object({
             age: z.preprocess(toNumberPreprocessor, z.number()),
@@ -67,18 +98,6 @@ describe('toNumberPreprocessor', () => {
         ).toThrow(/Expected number, received object/)
     })
 
-    it('does not convert boolean input', () => {
-        const SCHEMA = z.object({
-            isActive: z.preprocess(toNumberPreprocessor, z.number()),
-        })
-
-        expect(() =>
-            SCHEMA.parse({
-                isActive: true,
-            }),
-        ).toThrow(/Expected number, received boolean/)
-    })
-
     it('does not convert date input', () => {
         const SCHEMA = z.object({
             createdAt: z.preprocess(toNumberPreprocessor, z.number()),
@@ -103,18 +122,6 @@ describe('toNumberPreprocessor', () => {
         expect(result).toEqual({
             createdAt: undefined,
         })
-    })
-
-    it('does not convert null input', () => {
-        const SCHEMA = z.object({
-            createdAt: z.preprocess(toNumberPreprocessor, z.number()),
-        })
-
-        expect(() =>
-            SCHEMA.parse({
-                createdAt: null,
-            }),
-        ).toThrow(/Expected number, received null/)
     })
 
     it('does not convert function input', () => {
