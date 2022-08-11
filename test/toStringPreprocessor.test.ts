@@ -68,6 +68,20 @@ describe('toStringPreprocessor', () => {
         })
     })
 
+    it('converts null to empty string', () => {
+        const SCHEMA = z.object({
+            payload: z.preprocess(toStringPreprocessor, z.string()),
+        })
+
+        const result = SCHEMA.parse({
+            payload: null,
+        })
+
+        expect(result).toEqual({
+            payload: '',
+        })
+    })
+
     it('accepts undefined input', () => {
         const SCHEMA = z.object({
             name: z.preprocess(toStringPreprocessor, z.optional(z.string())),
@@ -104,17 +118,5 @@ describe('toStringPreprocessor', () => {
                 payload: { foo: 'bar' },
             }),
         ).toThrow(/Expected string, received object/)
-    })
-
-    it('fails when parsing null', () => {
-        const SCHEMA = z.object({
-            payload: z.preprocess(toStringPreprocessor, z.string()),
-        })
-
-        expect(() =>
-            SCHEMA.parse({
-                payload: null,
-            }),
-        ).toThrow(/Expected string, received null/)
     })
 })

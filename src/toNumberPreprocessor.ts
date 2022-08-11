@@ -3,11 +3,19 @@
  * using the rules found here https://ajv.js.org/coercion.html
  */
 const toNumberPreprocessor = (value: unknown) => {
-    switch (typeof value) {
-        case 'string':
-            return Number(value)
+    if (typeof value === 'string' && !isNaN(+value)) {
+        return +value
+    }
 
-        case 'bigint':
+    if (value === null) {
+        return 0
+    }
+
+    switch (typeof value) {
+        case 'boolean':
+            return +value
+
+        case 'bigint': // not defined in ajv spec, does NOT convert in order to not loose information
         case 'number':
             return value
 
