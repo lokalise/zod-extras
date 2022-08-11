@@ -23,6 +23,20 @@ describe('toNumberPreprocessor', () => {
         })
     })
 
+    it('converts empty string to zero', () => {
+        const SCHEMA = z.object({
+            createdAt: z.preprocess(toNumberPreprocessor, z.number()),
+        })
+
+        const result = SCHEMA.parse({
+            createdAt: '',
+        })
+
+        expect(result).toEqual({
+            createdAt: 0,
+        })
+    })
+
     it('converts booleans to number', () => {
         const SCHEMA = z.object({
             isActive: z.preprocess(toNumberPreprocessor, z.number()),
