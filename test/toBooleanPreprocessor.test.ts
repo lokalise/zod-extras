@@ -3,50 +3,76 @@ import z from 'zod'
 import toBooleanPreprocessor from '../src/toBooleanPreprocessor'
 
 describe('toBooleanPreprocessor', () => {
-    it('converts strings to boolean', () => {
+    it('converts valid strings to boolean', () => {
         const SCHEMA = z.object({
             isActive: z.preprocess(toBooleanPreprocessor, z.boolean()),
-            isConfirmed: z.preprocess(toBooleanPreprocessor, z.boolean()),
             isDeleted: z.preprocess(toBooleanPreprocessor, z.boolean()),
-            hasRelations: z.preprocess(toBooleanPreprocessor, z.boolean()),
-            somethingElse: z.preprocess(toBooleanPreprocessor, z.boolean()),
         })
 
         const result = SCHEMA.parse({
             isActive: 'true',
-            isConfirmed: '1',
             isDeleted: 'false',
-            hasRelations: '0',
-            somethingElse: 'foo',
         })
 
         expect(result).toEqual({
             isActive: true,
-            isConfirmed: true,
             isDeleted: false,
-            hasRelations: false,
-            somethingElse: true,
         })
     })
 
-    it('converts numbers to boolean', () => {
+    it('converts valid numbers to boolean', () => {
         const SCHEMA = z.object({
             isActive: z.preprocess(toBooleanPreprocessor, z.boolean()),
-            isConfirmed: z.preprocess(toBooleanPreprocessor, z.boolean()),
             isDeleted: z.preprocess(toBooleanPreprocessor, z.boolean()),
         })
 
         const result = SCHEMA.parse({
             isActive: 1,
-            isConfirmed: 0,
-            isDeleted: -1,
+            isDeleted: 0,
         })
 
         expect(result).toEqual({
             isActive: true,
-            isConfirmed: false,
-            isDeleted: true,
+            isDeleted: false,
         })
+    })
+
+    it('converts null to false', () => {
+        const SCHEMA = z.object({
+            isActive: z.preprocess(toBooleanPreprocessor, z.boolean()),
+        })
+
+        const result = SCHEMA.parse({
+            isActive: null,
+        })
+
+        expect(result).toEqual({
+            isActive: false,
+        })
+    })
+
+    it('does not convert invalid strings to boolean', () => {
+        const SCHEMA = z.object({
+            foo: z.preprocess(toBooleanPreprocessor, z.boolean()),
+        })
+
+        expect(() =>
+            SCHEMA.parse({
+                foo: 'bar',
+            }),
+        ).toThrow(/Expected boolean, received string/)
+    })
+
+    it('does not convert invalid numbers to boolean', () => {
+        const SCHEMA = z.object({
+            isActive: z.preprocess(toBooleanPreprocessor, z.boolean()),
+        })
+
+        expect(() =>
+            SCHEMA.parse({
+                isActive: 123,
+            }),
+        ).toThrow(/Expected boolean, received number/)
     })
 
     it('does not convert boolean input', () => {
@@ -102,18 +128,6 @@ describe('toBooleanPreprocessor', () => {
         expect(result).toEqual({
             createdAt: undefined,
         })
-    })
-
-    it('does not convert null input', () => {
-        const SCHEMA = z.object({
-            createdAt: z.preprocess(toBooleanPreprocessor, z.boolean()),
-        })
-
-        expect(() =>
-            SCHEMA.parse({
-                createdAt: null,
-            }),
-        ).toThrow(/Expected boolean, received null/)
     })
 
     it('does not convert function input', () => {

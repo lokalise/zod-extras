@@ -1,27 +1,31 @@
+/**
+ * Will try to convert any value to boolean,
+ * using the rules found here https://ajv.js.org/coercion.html
+ */
 const toBooleanPreprocessor = (value: unknown) => {
     if (typeof value === 'string') {
         const lowered = value.toLowerCase()
 
-        if (lowered === 'true' || lowered === '1') {
+        if (lowered === 'true') {
             return true
         }
 
-        if (lowered === 'false' || lowered === '0') {
+        if (lowered === 'false') {
             return false
         }
     }
 
-    switch (typeof value) {
-        case 'number':
-        case 'string':
+    if (typeof value === 'number') {
+        if (value === 0 || value === 1) {
             return Boolean(value)
-
-        case 'boolean':
-            return value
-
-        default:
-            return value // could not coerce, return the original and face the consequences during validation
+        }
     }
+
+    if (value === null) {
+        return false
+    }
+
+    return value // could not coerce, return the original and face the consequences during validation
 }
 
 export default toBooleanPreprocessor

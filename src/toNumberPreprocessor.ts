@@ -1,3 +1,7 @@
+/**
+ * Will try to convert any value to number,
+ * using the rules found here https://ajv.js.org/coercion.html
+ */
 const toNumberPreprocessor = (value: unknown) => {
     switch (typeof value) {
         case 'string':
