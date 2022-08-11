@@ -1,3 +1,7 @@
+/**
+ * Will try to convert any value to string,
+ * using the rules found here https://ajv.js.org/coercion.html
+ */
 const toStringPreprocessor = (value: unknown) => {
     switch (typeof value) {
         case 'bigint':
