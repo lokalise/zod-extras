@@ -11,7 +11,7 @@ const toStringPreprocessor = (value: unknown) => {
 
         case 'object':
             if (value == null) {
-                return '';
+                return ''
             }
             if (value instanceof Date) {
                 return value.toISOString()
