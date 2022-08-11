@@ -3,7 +3,7 @@ import z from 'zod'
 import toArrayPreprocessor from '../src/toArrayPreprocessor'
 
 describe('toArrayPreprocessor', () => {
-    it('converts strings to array', () => {
+    it('wraps strings in array', () => {
         const SCHEMA = z.object({
             names: z.preprocess(toArrayPreprocessor, z.array(z.string())),
         })
@@ -17,7 +17,7 @@ describe('toArrayPreprocessor', () => {
         })
     })
 
-    it('converts numbers to array', () => {
+    it('wraps numbers in array', () => {
         const SCHEMA = z.object({
             ages: z.preprocess(toArrayPreprocessor, z.array(z.number())),
         })
@@ -31,7 +31,21 @@ describe('toArrayPreprocessor', () => {
         })
     })
 
-    it('converts booleans to array', () => {
+    it('wraps bigint in array', () => {
+        const SCHEMA = z.object({
+            ages: z.preprocess(toArrayPreprocessor, z.array(z.bigint())),
+        })
+
+        const result = SCHEMA.parse({
+            ages: 44n,
+        })
+
+        expect(result).toEqual({
+            ages: [44n],
+        })
+    })
+
+    it('wraps booleans in array', () => {
         const SCHEMA = z.object({
             approvals: z.preprocess(toArrayPreprocessor, z.array(z.boolean())),
             actives: z.preprocess(toArrayPreprocessor, z.array(z.boolean())),

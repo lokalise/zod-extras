@@ -6,6 +6,7 @@ const toArrayPreprocessor = (value: unknown) => {
     switch (typeof value) {
         case 'string':
         case 'number':
+        case 'bigint':
         case 'boolean':
             return [value]
 
