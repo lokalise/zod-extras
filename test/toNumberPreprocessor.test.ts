@@ -149,4 +149,16 @@ describe('toNumberPreprocessor', () => {
             }),
         ).toThrow(/Expected number, received function/)
     })
+
+    it('does not convert string which are not valid numbers', () => {
+        const SCHEMA = z.object({
+            age: z.preprocess(toNumberPreprocessor, z.number()),
+        })
+
+        expect(() =>
+            SCHEMA.parse({
+                age: '123abc',
+            }),
+        ).toThrow(/Expected number, received string/)
+    })
 })
