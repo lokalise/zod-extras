@@ -7,6 +7,7 @@ Values that does not fit the rules specification will not be coerced, and will c
 ## toStringPreprocessor
 
 The `toStringPreprocessor` will attempt to convert values to strings.
+
 ```typescript
 import z from 'zod'
 
@@ -35,6 +36,7 @@ const result = schema.parse(input)
 ## toNumberPreprocessor
 
 The `toNumberPreprocessor` will attempt to convert values to numbers.
+
 ```typescript
 import z from 'zod'
 
@@ -60,6 +62,7 @@ const result = schema.parse(input)
 ## toBooleanPreprocessor
 
 The `toBooleanPreprocessor` will attempt to convert values to booleans.
+
 ```typescript
 import z from 'zod'
 
@@ -85,6 +88,7 @@ const result = schema.parse(input)
 ## toArrayPreprocessor
 
 The `toArrayPreprocessor` function will wrap primitive values in an array.
+
 ```typescript
 import z from 'zod'
 

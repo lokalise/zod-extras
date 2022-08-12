@@ -1,15 +1,10 @@
-const stringSplitFactory = ({
-    delimiter = ',',
-    castToNumber = false
-} = {}) => {
+const stringSplitFactory = ({ delimiter = ',', castToNumber = false } = {}) => {
     return (input: unknown): unknown => {
         if (typeof input !== 'string') {
             return input // could not coerce, return the original and face the consequences during validation
         }
 
-        const values = input
-            .split(delimiter)
-            .map((val) => val.trim())
+        const values = input.split(delimiter).map((val) => val.trim())
 
         if (!castToNumber) {
             return values

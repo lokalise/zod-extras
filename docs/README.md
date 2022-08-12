@@ -7,9 +7,11 @@ Information of how to use `zod-extras` package.
 The zod framework supports [preprocessors](https://github.com/colinhacks/zod#preprocess) which are functions that can modify input data before it's send to validation.
 
 ### Type coercion
+
 A common usecase for preprocessors is type coercion - this package includes a few helpers for that, you can find documentation for those [here](/docs/type-coercion.md).
 
 ### String split
+
 Another common usecase is turning a string like `"1,2,3"` into `[1, 2, 3]`, this can be done using the `stringSplitFactory` function which returns a function that can be used as a preprocessor.
 
 ```typescript

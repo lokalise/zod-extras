@@ -1,4 +1,4 @@
-import z, { string } from 'zod'
+import z from 'zod'
 
 import stringSplitFactory from '../src/stringSplitFactory'
 
