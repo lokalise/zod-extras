@@ -9,7 +9,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:ci": "npm run lint && npm run test:coverage",
