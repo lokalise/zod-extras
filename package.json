@@ -4,7 +4,9 @@
   "author": "Lokalise",
   "license": "Apache-2.0",
   "files": [
-    "dist/**"
+    "dist/**",
+    "LICENSE",
+    "README.md"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
