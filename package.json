@@ -1,4 +1,7 @@
 {
+  "name": "@lokalise/zod-extras",
+  "version": "0.0.1",
+  "author": "Lokalise",
   "scripts": {
     "build": "tsc",
     "test": "jest",
