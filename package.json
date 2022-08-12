@@ -1,7 +1,10 @@
 {
   "name": "@lokalise/zod-extras",
   "version": "1.0.0",
-  "author": "Lokalise",
+  "author": {
+    "name": "Lokalise",
+    "url": "https://lokalise.com/",
+  },
   "license": "Apache-2.0",
   "files": [
     "dist/**",
