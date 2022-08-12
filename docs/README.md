@@ -14,6 +14,12 @@ A common usecase for preprocessors is type coercion - this package includes a fe
 
 Another common usecase is turning a string like `"1,2,3"` into `[1, 2, 3]`, this can be done using the `stringSplitFactory` function which returns a function that can be used as a preprocessor.
 
+**Arguments**
+| Name         | Description                                                   | Type    | Default |
+|--------------|---------------------------------------------------------------|---------|---------|
+| delimiter    | The pattern used as delimiter                                 | string  | `,`     |
+| castToNumber | If `true` the values after splitting will be cast to numbers. | boolean | `false` |
+
 ```typescript
 import z, { string } from 'zod'
 import stringSplitFactory from 'src/stringSplitFactory'
