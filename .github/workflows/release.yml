@@ -30,4 +30,4 @@ jobs:
           GH_TOKEN: ${{ secrets.PLATFORM_READ_PRIVATE_REPOS }} # need this to push files automatically to Git
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # need this to create GitHub Release
         run: |
-          npx semantic-release
+          npx semantic-release1
