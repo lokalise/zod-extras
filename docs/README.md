@@ -21,7 +21,7 @@ Another common usecase is turning a string like `"1,2,3"` into `[1, 2, 3]`, this
 | castToNumber | If `true` the values after splitting will be cast to numbers. | boolean | `false` |
 
 ```typescript
-import z, { string } from 'zod'
+import { z } from 'zod'
 import stringSplitFactory from 'src/stringSplitFactory'
 
 const preprocessor = stringSplitFactory({ castToNumber: true })
