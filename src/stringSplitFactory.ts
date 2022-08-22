@@ -1,16 +1,16 @@
-const stringSplitFactory = ({ delimiter = ',', castToNumber = false } = {}) => {
+type StringSplitFactoryOpts = Partial<{
+    delimiter: string | RegExp
+}>
+
+const stringSplitFactory = (opts: StringSplitFactoryOpts = {}) => {
+    const { delimiter = ',' } = opts
+
     return (input: unknown): unknown => {
         if (typeof input !== 'string') {
             return input // could not coerce, return the original and face the consequences during validation
         }
 
-        const values = input.split(delimiter).map((val) => val.trim())
-
-        if (!castToNumber) {
-            return values
-        }
-
-        return values.map(Number)
+        return input.split(delimiter).map((val) => val.trim())
     }
 }
 

@@ -19,15 +19,15 @@ describe('stringSplitFactory', () => {
         expect(result).toEqual(['1', '2', '3'])
     })
 
-    it('can convert into numbers', () => {
-        const splitter = stringSplitFactory({ castToNumber: true })
-        const schema = z.preprocess(splitter, z.array(z.number()))
-        const result = schema.parse('1,2,3')
+    it('can use regex delimiter', () => {
+        const splitter = stringSplitFactory({ delimiter: /\D/ })
+        const schema = z.preprocess(splitter, z.array(z.string()))
+        const result = schema.parse('12a34_56')
 
-        expect(result).toEqual([1, 2, 3])
+        expect(result).toEqual(['12', '34', '56'])
     })
 
-    it('trims substrings', () => {
+    it('trims values', () => {
         const splitter = stringSplitFactory()
         const schema = z.preprocess(splitter, z.array(z.string()))
         const result = schema.parse('1, 2 ,3 ')
