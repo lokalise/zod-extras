@@ -18,6 +18,7 @@ Another common usecase is turning a string like `"Alice,Bob,Charlie"` into `['Al
 | Name | Description | Type | Default |
 |--------------|---------------------------------------------------------------|---------|---------|
 | delimiter | The pattern used as delimiter | string | `,` |
+| trim | If `true` values will be trimmed after splitting | boolean | `false` |
 
 ```typescript
 import { z } from 'zod'
