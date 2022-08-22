@@ -1,4 +1,11 @@
-import { numberSplitFactory, stringSplitFactory, toArrayPreprocessor, toBooleanPreprocessor, toNumberPreprocessor, toStringPreprocessor } from '../index'
+import {
+    numberSplitFactory,
+    stringSplitFactory,
+    toArrayPreprocessor,
+    toBooleanPreprocessor,
+    toNumberPreprocessor,
+    toStringPreprocessor,
+} from '../index'
 
 describe('index', () => {
     it('exposes numberSplitFactory', () => {
