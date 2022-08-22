@@ -1,4 +1,4 @@
-import z from 'zod'
+import { z } from 'zod'
 
 import toArrayPreprocessor from '../src/toArrayPreprocessor'
 

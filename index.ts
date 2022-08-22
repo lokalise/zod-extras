@@ -1,3 +1,5 @@
+export { default as numberSplitFactory } from './src/numberSplitFactory'
+export { default as stringSplitFactory } from './src/stringSplitFactory'
 export { default as toArrayPreprocessor } from './src/toArrayPreprocessor'
 export { default as toBooleanPreprocessor } from './src/toBooleanPreprocessor'
 export { default as toNumberPreprocessor } from './src/toNumberPreprocessor'
