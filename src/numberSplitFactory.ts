@@ -2,7 +2,7 @@ type NumberSplitFactoryOpts = Partial<{
     delimiter: string | RegExp
 }>
 
-const stringSplitFactory = (opts: NumberSplitFactoryOpts = {}) => {
+const numberSplitFactory = (opts: NumberSplitFactoryOpts = {}) => {
     const { delimiter = ',' } = opts
 
     return (input: unknown): unknown => {
@@ -14,4 +14,4 @@ const stringSplitFactory = (opts: NumberSplitFactoryOpts = {}) => {
     }
 }
 
-export default stringSplitFactory
+export default numberSplitFactory
