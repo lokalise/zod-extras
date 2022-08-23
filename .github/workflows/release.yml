@@ -1,10 +1,16 @@
+# Workflow for releasing package to npm registry
 name: Release to NPM
 on:
-    push:
-        branches: main
+    pull_request:
+        types:
+          - closed # Only run after PRs have been merged or closed
+        branches:
+          - main # Only run for PRs targeted against main branch
 
 jobs:
     release:
+        # Only run for pull requests that has been merged (not closed) and has the label "Release" attached
+        if: ${{ (github.event.pull_request.merged == true) && (contains(github.event.pull_request.labels.*.name, 'Release')) }}
         name: release
         runs-on: ubuntu-latest
         steps:
