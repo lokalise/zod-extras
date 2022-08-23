@@ -1,0 +1,24 @@
+# Workflow to ensure pull request has proper labels
+name: Ensure labels
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronized
+      - labeled
+      - unlabeled
+
+jobs:
+  ensure_labels:
+    name: Ensure PR has proper labeling
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check on of required labels are set
+        uses: docker://agilepathway/pull-request-label-checker:latest
+        with:
+          one_of: major,minor,patch,skip-release # Must have exactly-one of these labels
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
