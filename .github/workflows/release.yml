@@ -3,9 +3,9 @@ name: Release to NPM
 on:
     pull_request:
         types:
-          - closed # Only run after PRs have been merged or closed
+            - closed # Only run after PRs have been merged or closed
         branches:
-          - main # Only run for PRs targeted against main branch
+            - main # Only run for PRs targeted against main branch
 
 jobs:
     release:
@@ -35,8 +35,8 @@ jobs:
 
             - name: Setup git config
               run: |
-                git config --global user.email "auto-release@lokalise.com"
-                git config --global user.name "AUTO RELEASE"
+                  git config --global user.email "auto-release@lokalise.com"
+                  git config --global user.name "AUTO RELEASE"
 
             # Apply proper semver according to github labels
 
