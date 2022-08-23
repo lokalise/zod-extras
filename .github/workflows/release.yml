@@ -10,7 +10,7 @@ on:
 jobs:
     release:
         # Only run for pull requests that has been merged (not closed)
-        if: github.event.pull_request.merged == true
+        if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'skip-release') == false
         name: release
         runs-on: ubuntu-latest
         steps:
@@ -39,15 +39,15 @@ jobs:
                 git config --global user.name "AUTO RELEASE"
 
             - name: Major label detected
-              if: "contains(github.event.lpull_request.labels.*.name, 'major')"
+              if: contains(github.event.lpull_request.labels.*.name, 'major')
               run: npm version major
 
             - name: Minor label detected
-              if: "contains(github.event.lpull_request.labels.*.name, 'minor')"
+              if: contains(github.event.lpull_request.labels.*.name, 'minor')
               run: npm version minor
 
             - name: Patch label detected
-              if: "contains(github.event.lpull_request.labels.*.name, 'patch')"
+              if: contains(github.event.lpull_request.labels.*.name, 'patch')
               run: npm version patch
 
             - name: Git push
