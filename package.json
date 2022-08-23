@@ -20,7 +20,8 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "prepublishOnly": "npm run build",
-    "changelog:generate": "auto-changelog --sort-commits date-desc"
+    "changelog:generate": "auto-changelog --sort-commits date-desc",
+    "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "devDependencies": {
     "@types/jest": "^28.1.6",
