@@ -9,7 +9,7 @@ on:
 
 jobs:
     release:
-        # Only run for pull requests that has been merged (not closed)
+        # Only run for pull requests that has been merged (not closed) and that doesn't have `skip-release` label
         if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'skip-release') == false
         name: release
         runs-on: ubuntu-latest
@@ -38,16 +38,18 @@ jobs:
                 git config --global user.email "auto-release@lokalise.com"
                 git config --global user.name "AUTO RELEASE"
 
+            # Apply proper semver according to github labels
+
             - name: Major label detected
-              if: contains(github.event.lpull_request.labels.*.name, 'major')
+              if: contains(github.event.pull_request.labels.*.name, 'major')
               run: npm version major
 
             - name: Minor label detected
-              if: contains(github.event.lpull_request.labels.*.name, 'minor')
+              if: contains(github.event.pull_request.labels.*.name, 'minor')
               run: npm version minor
 
             - name: Patch label detected
-              if: contains(github.event.lpull_request.labels.*.name, 'patch')
+              if: contains(github.event.pull_request.labels.*.name, 'patch')
               run: npm version patch
 
             - name: Git push
@@ -56,5 +58,4 @@ jobs:
             - name: Release Package
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-              run: |
-                  npm publish
+              run: npm publish
