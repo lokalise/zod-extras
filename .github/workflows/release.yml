@@ -57,5 +57,5 @@ jobs:
 
             - name: Release Package
               env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_LOKANKR }}
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
               run: npm publish
