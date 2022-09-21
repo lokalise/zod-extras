@@ -7,21 +7,18 @@
   },
   "license": "Apache-2.0",
   "files": [
-    "index.ts",
     "dist/**",
     "LICENSE",
     "README.md"
   ],
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "clean": "shx rm -rf ./dist",
-    "build:ts": "tsc",
-    "build:static": "shx cp LICENSE README.md package.json ./dist",
-    "build": "npm run clean && npm run build:ts && npm run build:static",
+    "build": "shx rm -rf ./dist && tsc",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:ci": "npm run lint && npm run test:coverage",
