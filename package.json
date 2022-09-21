@@ -7,11 +7,12 @@
   },
   "license": "Apache-2.0",
   "files": [
+    "index.js",
     "dist/**",
     "LICENSE",
     "README.md"
   ],
-  "main": "dist/index.js",
+  "main": "index.js",
   "publishConfig": {
     "access": "public"
   },

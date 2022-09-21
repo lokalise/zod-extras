@@ -1,6 +1,0 @@
-export { default as numberSplitFactory } from './src/numberSplitFactory.js'
-export { default as stringSplitFactory } from './src/stringSplitFactory.js'
-export { default as toArrayPreprocessor } from './src/toArrayPreprocessor.js'
-export { default as toBooleanPreprocessor } from './src/toBooleanPreprocessor.js'
-export { default as toNumberPreprocessor } from './src/toNumberPreprocessor.js'
-export { default as toStringPreprocessor } from './src/toStringPreprocessor.js'
