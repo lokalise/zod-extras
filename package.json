@@ -13,6 +13,7 @@
     "README.md"
   ],
   "main": "index.js",
+  "type": "module",
   "publishConfig": {
     "access": "public"
   },
