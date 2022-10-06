@@ -110,3 +110,32 @@ const result = schema.parse(input)
     age: [44]
 }
 ```
+
+## toDatePreprocessor
+
+The `toDatePreprocessor` will attempt to convert values to date.
+
+```typescript
+import { z } from 'zod'
+
+const schema = z.object({
+    createdAt: z.preprocess(toDatePreprocessor, z.date()),
+    updatedAt: z.preprocess(toDatePreprocessor, z.date()),
+    deletedAt: z.preprocess(toDatePreprocessor, z.date()),
+})
+
+const input = {
+    createdAt: 166,
+    updatedAt: '2022-01-12T00:00:00.000Z',
+    deletedAt: '2023-01-01',
+}
+
+const result = schema.parse(input)
+
+// `result` will now contain the following values
+{
+    createdAt: new Date(166),
+    updatedAt: new Date('2022-01-12T00:00:00.000Z'),
+    deletedAt: new Date('2023-01-01'),
+}
+```
