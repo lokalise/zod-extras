@@ -6,6 +6,11 @@
     "url": "https://lokalise.com/"
   },
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lokalise/zod-extras.git"
+  },
+  "homepage": "https://github.com/lokalise/zod-extras",
   "files": [
     "dist/**",
     "LICENSE",
