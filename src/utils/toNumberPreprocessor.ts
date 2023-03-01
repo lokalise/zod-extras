@@ -3,7 +3,7 @@
  * using the rules found here https://ajv.js.org/coercion.html
  */
 const toNumberPreprocessor = (value: unknown) => {
-  if (typeof value === 'string' && !isNaN(+value)) {
+  if (typeof value === 'string' && value !== '' && !isNaN(+value)) {
     return +value
   }
 
