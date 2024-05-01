@@ -7,7 +7,7 @@
     "sourceMap": true,
     "declaration": true,
     "declarationMap": false,
-    "types": ["node", "jest"],
+    "types": ["node"],
     "skipLibCheck": true,
     "strict": true,
     "moduleResolution": "node",
