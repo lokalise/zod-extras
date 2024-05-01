@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "module": "commonjs",
+    "module": "ESNext",
     "target": "ES2022",
     "lib": ["ES2022"],
     "sourceMap": true,
     "declaration": true,
     "declarationMap": false,
     "types": ["node", "jest"],
+    "skipLibCheck": true,
     "strict": true,
     "moduleResolution": "node",
     "noUnusedLocals": false,
