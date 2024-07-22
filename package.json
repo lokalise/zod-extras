@@ -41,7 +41,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@lokalise/package-vite-config": "^2.0.0",
+    "@lokalise/package-vite-config": "^3.0.0",
     "@types/node": "^20.12.7",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
     "@typescript-eslint/parser": "^7.8.0",
