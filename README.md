@@ -1,5 +1,7 @@
 # zod-extras
 
+Deprecated: use https://github.com/lokalise/shared-ts-libs/tree/main/packages/app/zod-extras instead
+
 Adds additional functionality on top of zod framework.
 
 See [docs](/docs) for instructions on how to use.
